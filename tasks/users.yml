@@ -1,0 +1,26 @@
+# ansible system user and sudoers — Linux only
+# macOS uses its own privilege model; sudoers managed separately.
+
+- name: create ansible system user
+  user:
+    name: ansible
+    system: yes
+  when: ansible_os_family != "Darwin"
+
+- name: deploy sudoers file for ansible user
+  copy:
+    src: files/sudoers_ansible
+    dest: /etc/sudoers.d/ansible
+    owner: root
+    group: root
+    mode: "0440"
+  when: ansible_os_family != "Darwin"
+
+- name: deploy sudoers file for target user
+  template:
+    src: templates/sudoers_user.j2
+    dest: "/etc/sudoers.d/{{ target_user }}"
+    owner: root
+    group: root
+    mode: "0440"
+  when: ansible_os_family != "Darwin"

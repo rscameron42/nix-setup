@@ -1,0 +1,57 @@
+# Linux (Debian/Ubuntu) packages via apt
+- name: install packages (apt)
+  apt:
+    name:
+      - btop
+      - curl
+      - git
+      - htop
+      - ipcalc
+      - iperf3
+      - ipython3
+      - mc
+      - ncdu
+      - fastfetch
+      - net-tools
+      - nmap
+      - openssh-server
+      - python3-pip
+      - ranger
+      - tcpdump
+      - tmux
+      - traceroute
+      - tree
+      - vim
+      - vpnc
+      - zsh
+    state: present
+  when: ansible_pkg_mgr == "apt"
+
+# macOS packages via Homebrew
+# Prerequisite: Homebrew must be installed before running ansible-pull on macOS.
+# Install it manually: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+- name: install packages (homebrew)
+  homebrew:
+    name:
+      - btop
+      - curl
+      - git
+      - htop
+      - ipcalc
+      - iperf3
+      - ipython
+      - mc
+      - ncdu
+      - fastfetch
+      - nmap
+      - ranger
+      - tcpdump
+      - tmux
+      - traceroute
+      - tree
+      - vim
+      - vpnc
+      - zsh
+    state: present
+  become: false
+  when: ansible_os_family == "Darwin"

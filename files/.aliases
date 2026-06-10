@@ -1,0 +1,20 @@
+# Simplify sudo
+alias _='sudo '
+
+# Disk Usage shortcuts
+alias du='du -h'
+alias du1='du -d 1'
+alias du2='du -d 2'
+alias du3='du -d 3'
+
+# Pattern Searches
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+
+# Directory listing changes
+alias l='ls -al'
+alias la='ls -A'
+alias ll='ls -l'
+
+# less - change default to add -R
+alias less='less -R'

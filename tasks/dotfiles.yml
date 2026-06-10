@@ -1,0 +1,14 @@
+- name: deploy dotfiles to target user home directory
+  copy:
+    src: "files/{{ item }}"
+    dest: "{{ target_home }}/{{ item }}"
+    owner: "{{ target_user }}"
+    group: "{{ target_user }}"
+    mode: "0644"
+    backup: yes
+  loop:
+    - .zshrc
+    - .aliases
+    - .aliases.linux
+    - .aliases.darwin
+    - .vimrc

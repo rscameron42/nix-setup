@@ -1,0 +1,9 @@
+# Self-updating cron job via ansible-pull — Linux only
+# On macOS, use launchd or run ansible-pull manually.
+- name: install ansible-pull cron job
+  cron:
+    user: ansible
+    name: "ansible provision"
+    minute: "*/10"
+    job: "/usr/bin/ansible-pull -o -U https://github.com/rscameron42/nix-setup.git >> /var/log/ansible-pull.log 2>&1"
+  when: ansible_os_family != "Darwin"

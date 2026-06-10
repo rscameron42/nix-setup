@@ -1,0 +1,11 @@
+- name: set zsh as default shell for target user (Linux)
+  user:
+    name: "{{ target_user }}"
+    shell: /usr/bin/zsh
+  when: ansible_os_family != "Darwin"
+
+- name: set zsh as default shell for target user (macOS)
+  user:
+    name: "{{ target_user }}"
+    shell: /bin/zsh
+  when: ansible_os_family == "Darwin"
