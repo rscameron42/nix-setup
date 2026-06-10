@@ -2,10 +2,10 @@
   user:
     name: "{{ target_user }}"
     shell: /usr/bin/zsh
-  when: ansible_os_family != "Darwin"
+  when: ansible_facts['os_family'] != "Darwin"
 
 - name: set zsh as default shell for target user (macOS)
   user:
     name: "{{ target_user }}"
     shell: /bin/zsh
-  when: ansible_os_family == "Darwin"
+  when: ansible_facts['os_family'] == "Darwin"
