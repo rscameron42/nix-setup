@@ -1,0 +1,13 @@
+- name: get current timezone
+  command: timedatectl show --property=Timezone --value
+  register: current_tz
+  changed_when: false
+  become: false
+  when: ansible_facts['os_family'] != "Darwin"
+
+- name: set timezone to America/Los_Angeles
+  command: timedatectl set-timezone America/Los_Angeles
+  become: true
+  when:
+    - ansible_facts['os_family'] != "Darwin"
+    - current_tz.stdout != "America/Los_Angeles"
