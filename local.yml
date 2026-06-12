@@ -1,6 +1,5 @@
 - hosts: localhost
   connection: local
-  become: true
 
   vars:
     target_user: ron
@@ -11,6 +10,7 @@
       apt:
         update_cache: yes
       changed_when: False
+      become: true
       when: ansible_facts['pkg_mgr'] == "apt"
 
   tasks:

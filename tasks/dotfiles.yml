@@ -3,7 +3,6 @@
     src: "files/{{ item }}"
     dest: "{{ target_home }}/{{ item }}"
     owner: "{{ target_user }}"
-    group: "{{ target_user }}"
     mode: "0644"
     backup: yes
   loop:
@@ -12,3 +11,4 @@
     - .aliases.linux
     - .aliases.darwin
     - .vimrc
+  become: "{{ ansible_facts['os_family'] != 'Darwin' }}"

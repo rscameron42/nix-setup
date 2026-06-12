@@ -6,4 +6,5 @@
     name: "ansible provision"
     minute: "*/10"
     job: "/usr/bin/ansible-pull -o -U https://github.com/rscameron42/nix-setup.git >> /var/log/ansible-pull.log 2>&1"
+  become: true
   when: ansible_facts['os_family'] != "Darwin"
