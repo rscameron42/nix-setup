@@ -50,9 +50,9 @@
       - tmux
       - tree
       - vim
-      - vpnc
       - zsh
       # traceroute omitted — built into macOS at /usr/sbin/traceroute
+      # vpnc omitted — not available in Homebrew; install Cisco AnyConnect or openconnect manually
     state: present
   become: false
   when: ansible_facts['os_family'] == "Darwin"
